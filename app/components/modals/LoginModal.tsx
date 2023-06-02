@@ -18,8 +18,10 @@ import Heading from "./Heading";
 
 const LoginModal = () => {
   const router = useRouter();
+
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -54,7 +56,7 @@ const LoginModal = () => {
     });
   };
 
-  const onToggle = useCallback(() => {
+  const toggle = useCallback(() => {
     loginModal.onClose();
     registerModal.onOpen();
   }, [loginModal, registerModal]);
@@ -104,14 +106,14 @@ const LoginModal = () => {
         <p>
           First time using Airbnb?
           <span
-            onClick={onToggle}
+            onClick={toggle}
             className="
               text-neutral-800
               cursor-pointer 
               hover:underline
+              ml-2
             "
           >
-            {" "}
             Create an account
           </span>
         </p>
