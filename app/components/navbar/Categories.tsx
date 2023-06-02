@@ -19,6 +19,7 @@ import { MdOutlineVilla } from "react-icons/md";
 import CategoryBox from "../CategoryBox";
 import { usePathname, useSearchParams } from "next/navigation";
 import { BaseSyntheticEvent, useState } from "react";
+import ScrollButtonHorizontal from "../ScrollHorizonatlButton";
 
 export const categories = [
   {
@@ -135,14 +136,7 @@ const Categories = () => {
     // <Container>
     <div className="relative w-full">
       {!isStart && (
-        <div className="scroll-left flex justify-center items-center absolute left-0 top-0 h-full w-12">
-          <button
-            onClick={() => scrollBy(-200)}
-            className="bg-white border-gray-500 border-[1px] p-1 rounded-full top-7"
-          >
-            <FaChevronLeft size="14" />
-          </button>
-        </div>
+        <ScrollButtonHorizontal left onClick={() => scrollBy(-200)} />
       )}
       <div
         onScroll={handleScroll}
@@ -157,16 +151,7 @@ const Categories = () => {
           ></CategoryBox>
         ))}
       </div>
-      {!isEnd && (
-        <div className="scroll-right flex justify-center items-center absolute right-0 top-0 h-full w-10">
-          <button
-            onClick={() => scrollBy(200)}
-            className="bg-white border-gray-500 border-[1px] p-1 rounded-full"
-          >
-            <FaChevronRight size="14" />
-          </button>
-        </div>
-      )}
+      {!isEnd && <ScrollButtonHorizontal right onClick={() => scrollBy(200)} />}
     </div>
     // </Container>
   );
