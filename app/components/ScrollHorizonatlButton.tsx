@@ -16,11 +16,11 @@ const ScrollButtonHorizontal: React.FC<ScrollButtonHorizontalProps> = ({
   const direction = left ? "left" : "right";
   return (
     <div
-      className={`scroll-${direction} flex justify-center items-center absolute ${direction}-0 top-0 h-full w-12`}
+      className={`scroll-${direction} hidden md:flex justify-center items-center absolute ${direction}-0 top-0 h-full w-12`}
     >
       <button
         onClick={onClick}
-        className="bg-white border-gray-500 border-[1px] p-1 rounded-full top-7"
+        className="bg-white border-neutral-400 border-[1px] p-1 rounded-full top-7"
       >
         {left ? <FaChevronLeft size="14" /> : <FaChevronRight size="14" />}
       </button>
