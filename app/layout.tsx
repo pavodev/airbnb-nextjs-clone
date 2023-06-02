@@ -8,8 +8,6 @@ import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import getCurrentUser from "./actions/getCurrentUser";
 
-import "./styles/global.css";
-
 export const metadata = {
   title: "Airbnb",
   description: "Airbnb clone in Next.js!",

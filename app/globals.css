@@ -7,3 +7,29 @@ body,
 :root {
   height: 100%;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scroll-left {
+  background-image: linear-gradient(to left, rgb(255 255 255/0), white 40px);
+}
+
+.scroll-right {
+  background-image: linear-gradient(to right, rgb(255 255 255/0), white 40px);
+}
+
+.leaflet-bottom,
+.leaflet-control,
+.leaflet-pane,
+.leaflet-top {
+  z-index: 0 !important;
+}
