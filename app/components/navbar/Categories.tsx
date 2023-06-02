@@ -12,12 +12,13 @@ import {
   GiIsland,
   GiWindmill,
 } from "react-icons/gi";
-import { FaSkiing } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight, FaSkiing } from "react-icons/fa";
 import { BsSnow } from "react-icons/bs";
 import { IoDiamond } from "react-icons/io5";
 import { MdOutlineVilla } from "react-icons/md";
 import CategoryBox from "../CategoryBox";
 import { usePathname, useSearchParams } from "next/navigation";
+import { BaseSyntheticEvent, useState } from "react";
 
 export const categories = [
   {
@@ -98,6 +99,9 @@ export const categories = [
 ];
 
 const Categories = () => {
+  const [isStart, setIsStart] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
+
   const params = useSearchParams();
   const category = params?.get("category");
   const pathname = usePathname();
@@ -106,17 +110,59 @@ const Categories = () => {
 
   if (!isMainPage) return null; // we want the categories to be displayed only in the Homepage
 
+  const scrollBy = (scrollOffset: number) => {
+    const categoriesContainer = document.querySelector(".categories-container");
+
+    if (categoriesContainer) {
+      categoriesContainer.scrollLeft += scrollOffset;
+    }
+  };
+
+  const handleScroll = (e: BaseSyntheticEvent) => {
+    if (e.target.scrollWidth - e.target.scrollLeft === e.target.clientWidth) {
+      setIsStart(false);
+      setIsEnd(true);
+    } else if (e.target.scrollLeft === 0) {
+      setIsStart(true);
+      setIsEnd(false);
+    } else if (isStart || isEnd) {
+      setIsStart(false);
+      setIsEnd(false);
+    }
+  };
+
   return (
     <Container>
-      <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto">
-        {categories.map((item) => (
-          <CategoryBox
-            key={item.label}
-            label={item.label}
-            selected={category === item.label}
-            icon={item.icon}
-          ></CategoryBox>
-        ))}
+      <div className="relative w-full">
+        {!isStart && (
+          <button
+            onClick={() => scrollBy(-200)}
+            className="scroll-left absolute left-0 bg-white border-gray-500 border-[1px] p-1 rounded-full top-9"
+          >
+            <FaChevronLeft size="14" />
+          </button>
+        )}
+        <div
+          onScroll={handleScroll}
+          className="categories-container no-scrollbar pt-2 flex flex-row items-center justify-between overflow-x-auto scroll-smooth scrollbar-hide"
+        >
+          {categories.map((item) => (
+            <CategoryBox
+              key={item.label}
+              label={item.label}
+              selected={category === item.label}
+              icon={item.icon}
+            ></CategoryBox>
+          ))}
+        </div>
+        {!isEnd && (
+          <button
+            onClick={() => scrollBy(200)}
+            className="scroll-right absolute right-0 bg-white border-gray-500 border-[1px] p-1 rounded-full top-9"
+          >
+            <FaChevronRight size="14" />
+          </button>
+        )}
       </div>
     </Container>
   );
