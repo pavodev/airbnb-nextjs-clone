@@ -132,39 +132,43 @@ const Categories = () => {
   };
 
   return (
-    <Container>
-      <div className="relative w-full">
-        {!isStart && (
+    // <Container>
+    <div className="relative w-full">
+      {!isStart && (
+        <div className="scroll-left flex justify-center items-center absolute left-0 top-0 h-full w-12">
           <button
             onClick={() => scrollBy(-200)}
-            className="scroll-left absolute left-0 bg-white border-gray-500 border-[1px] p-1 rounded-full top-9"
+            className="bg-white border-gray-500 border-[1px] p-1 rounded-full top-7"
           >
             <FaChevronLeft size="14" />
           </button>
-        )}
-        <div
-          onScroll={handleScroll}
-          className="categories-container no-scrollbar pt-2 flex flex-row items-center justify-between overflow-x-auto scroll-smooth scrollbar-hide"
-        >
-          {categories.map((item) => (
-            <CategoryBox
-              key={item.label}
-              label={item.label}
-              selected={category === item.label}
-              icon={item.icon}
-            ></CategoryBox>
-          ))}
         </div>
-        {!isEnd && (
+      )}
+      <div
+        onScroll={handleScroll}
+        className="categories-container no-scrollbar pt-2 pl-2 pr-2 flex flex-row items-center justify-between overflow-x-auto scroll-smooth scrollbar-hide"
+      >
+        {categories.map((item) => (
+          <CategoryBox
+            key={item.label}
+            label={item.label}
+            selected={category === item.label}
+            icon={item.icon}
+          ></CategoryBox>
+        ))}
+      </div>
+      {!isEnd && (
+        <div className="scroll-right flex justify-center items-center absolute right-0 top-0 h-full w-10">
           <button
             onClick={() => scrollBy(200)}
-            className="scroll-right absolute right-0 bg-white border-gray-500 border-[1px] p-1 rounded-full top-9"
+            className="bg-white border-gray-500 border-[1px] p-1 rounded-full"
           >
             <FaChevronRight size="14" />
           </button>
-        )}
-      </div>
-    </Container>
+        </div>
+      )}
+    </div>
+    // </Container>
   );
 };
 
