@@ -1,3 +1,5 @@
+This project is live (with working authentication) thanks to Vercel, check it out on: https://rent-platform-lilac.vercel.app/
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
