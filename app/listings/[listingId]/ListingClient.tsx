@@ -71,7 +71,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
         toast.success("Listing reserved!");
         setDateRange(initialDateRange);
         // Redirect to /trips
-        router.refresh();
+        router.push("/trips");
       })
       .catch(() => {
         toast.error("Something went wrong.");
@@ -87,8 +87,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
         dateRange.endDate,
         dateRange.startDate
       );
-
-      console.log(dayCount, listing.price);
 
       if (dayCount && listing.price) {
         setTotalPrice(dayCount * listing.price);
